@@ -18,6 +18,16 @@ public class MainPage extends AbstractPage
     @FindBy(linkText = "Et, Tavuk, Balık")
     public WebElement meatFishChickenMenu;
 
+    @FindBy(linkText = "Bebek, Oyuncak")
+    public WebElement babyToyMenu;
+
+    @FindBy(css = "a[data-monitor-ga-action='Bebek Bezi']")
+    public WebElement diaperCategory;
+
+    // FIXME: Working selector
+    @FindBy(css = "a[brands-list-anchor='Prima']")
+    public WebElement diaperBrand;
+
     @FindBy(css = "a[data-monitor-ga-action='Kırmızı Et']")
     public WebElement meatCategory;
 
