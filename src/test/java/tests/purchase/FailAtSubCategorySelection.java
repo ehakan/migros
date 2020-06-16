@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.openqa.selenium.ElementNotInteractableException;
+import org.openqa.selenium.NoSuchElementException;
 import pages.common.CategoryPage;
 import pages.common.MainPage;
 import tests.AbstractTest;
@@ -24,6 +26,11 @@ public class FailAtSubCategorySelection extends AbstractTest {
     @Test
     public void stage_002_testFailAtSubCategorySelection() {
         CategoryPage categoryPage = new CategoryPage(browser);
+        try {
+            browser.waitAndClick(categoryPage.cookieDismissButton);
+        } catch (NoSuchElementException e) {
+        } catch (ElementNotInteractableException e) {
+        }
         browser.waitAndClick(categoryPage.toySubCategory);
         Assert.assertNotEquals(browser.getCurrentUrl(), SUB_CATEGORY_URL);
     }

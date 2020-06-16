@@ -10,6 +10,9 @@ public class CategoryPage extends AbstractPage {
         super(browser);
     }
 
+    @FindBy(className = "cookie-popup-dismiss")
+    public WebElement cookieDismissButton;
+
     @FindBy(css = "a[data-monitor-ga-action='Bebek Bezi']")
     public WebElement diaperSubCategory;
 
