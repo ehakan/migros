@@ -12,4 +12,7 @@ public class CategoryPage extends AbstractPage {
 
     @FindBy(css = "a[data-monitor-ga-action='Bebek Bezi']")
     public WebElement diaperSubCategory;
+
+    @FindBy(css = "a[data-monitor-ga-action='Oyuncak']")
+    public WebElement toySubCategory;
 }
