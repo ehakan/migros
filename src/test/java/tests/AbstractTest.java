@@ -1,26 +1,27 @@
 package tests;
 
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.*;
 import pages.common.MainPage;
 import pages.user.LoginPage;
 import utils.Browser;
 import utils.TestContext;
 
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.Alphanumeric.class)
 public class AbstractTest
 {
-    public static TestContext context = new TestContext();
-    public static Browser browser = context.doCreateBrowser();
+    public TestContext context = new TestContext();
+    public Browser browser = context.doCreateBrowser();
 
-    @BeforeClass
-    public static void setUpClass()
+    @BeforeAll
+    public void setUpClass()
     {
         browser.get("https://www.migros.com.tr");
     }
 
-    @AfterClass
-    public static void tearDownClass()
+    @AfterAll
+    public void tearDownClass()
     {
         if (null != browser)
             browser.close();
@@ -39,7 +40,7 @@ public class AbstractTest
 
         browser.waitAndClick(loginPage.loginButton);
 
-        Assert.assertNotNull(loginPage.displayName.getText());
+        Assertions.assertNotNull(loginPage.displayName.getText());
     }
 
     public void clearBasket()

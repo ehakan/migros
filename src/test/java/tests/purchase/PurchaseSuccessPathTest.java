@@ -1,19 +1,14 @@
 package tests.purchase;
 
-import org.junit.Assert;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runners.MethodSorters;
-import org.openqa.selenium.By;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import pages.common.CategoryPage;
 import pages.common.MainPage;
 import pages.common.SubCategoryPage;
 import tests.AbstractTest;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PurchaseSuccessPathTest extends AbstractTest {
 
     private final String CATEGORY_URL = "https://www.migros.com.tr/bebek-oyuncak-c-9";
@@ -25,14 +20,14 @@ public class PurchaseSuccessPathTest extends AbstractTest {
     public void stage_001_testCategorySelection() {
         MainPage mainPage = new MainPage(browser);
         browser.waitAndClick(mainPage.babyToyMenu);
-        Assert.assertEquals(browser.getCurrentUrl(), CATEGORY_URL);
+        Assertions.assertEquals(browser.getCurrentUrl(), CATEGORY_URL);
     }
 
     @Test
     public void stage_002_testSubCategorySelection() {
         CategoryPage categoryPage = new CategoryPage(browser);
         browser.waitAndClick(categoryPage.diaperSubCategory);
-        Assert.assertEquals(browser.getCurrentUrl(), SUB_CATEGORY_URL);
+        Assertions.assertEquals(browser.getCurrentUrl(), SUB_CATEGORY_URL);
     }
 
     @Test
@@ -44,7 +39,7 @@ public class PurchaseSuccessPathTest extends AbstractTest {
         } catch (ElementNotInteractableException e) {
         }
         browser.waitAndClick(subCategoryPage.diaperBrandCheckbox);
-        Assert.assertEquals(browser.getCurrentUrl(), BRAND);
+        Assertions.assertEquals(browser.getCurrentUrl(), BRAND);
     }
 
     @Test
@@ -52,7 +47,7 @@ public class PurchaseSuccessPathTest extends AbstractTest {
         SubCategoryPage subCategoryPage = new SubCategoryPage(browser);
         browser.waitAndClick(subCategoryPage.sortDropdown);
         browser.waitAndClick(subCategoryPage.sortByHighestPrice);
-        Assert.assertEquals(browser.getCurrentUrl(), SORTED_BY_HIGHEST_PRICE_URL);
+        Assertions.assertEquals(browser.getCurrentUrl(), SORTED_BY_HIGHEST_PRICE_URL);
     }
 
     @Test
@@ -61,7 +56,7 @@ public class PurchaseSuccessPathTest extends AbstractTest {
         browser.waitAndClick(subCategoryPage.addBasket);
 
         // Asserts login modal is displayed
-        Assert.assertEquals(subCategoryPage.loginModal.getCssValue("display"), "block");
+        Assertions.assertEquals(subCategoryPage.loginModal.getCssValue("display"), "block");
     }
 
 }

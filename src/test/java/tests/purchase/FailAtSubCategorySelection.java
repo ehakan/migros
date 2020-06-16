@@ -1,16 +1,15 @@
 package tests.purchase;
 
-import org.junit.Assert;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runners.MethodSorters;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
 import pages.common.CategoryPage;
 import pages.common.MainPage;
 import tests.AbstractTest;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FailAtSubCategorySelection extends AbstractTest {
 
     private final String CATEGORY_URL = "https://www.migros.com.tr/bebek-oyuncak-c-9";
@@ -20,7 +19,7 @@ public class FailAtSubCategorySelection extends AbstractTest {
     public void stage_001_testCategorySelection() {
         MainPage mainPage = new MainPage(browser);
         browser.waitAndClick(mainPage.babyToyMenu);
-        Assert.assertEquals(browser.getCurrentUrl(), CATEGORY_URL);
+        Assertions.assertEquals(browser.getCurrentUrl(), CATEGORY_URL);
     }
 
     @Test
@@ -32,6 +31,6 @@ public class FailAtSubCategorySelection extends AbstractTest {
         } catch (ElementNotInteractableException e) {
         }
         browser.waitAndClick(categoryPage.toySubCategory);
-        Assert.assertNotEquals(browser.getCurrentUrl(), SUB_CATEGORY_URL);
+        Assertions.assertNotEquals(browser.getCurrentUrl(), SUB_CATEGORY_URL);
     }
 }
