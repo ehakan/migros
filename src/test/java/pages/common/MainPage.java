@@ -24,10 +24,6 @@ public class MainPage extends AbstractPage
     @FindBy(css = "a[data-monitor-ga-action='Bebek Bezi']")
     public WebElement diaperCategory;
 
-    // FIXME: Working selector
-    @FindBy(css = "a[brands-list-anchor='Prima']")
-    public WebElement diaperBrand;
-
     @FindBy(css = "a[data-monitor-ga-action='Kırmızı Et']")
     public WebElement meatCategory;
 

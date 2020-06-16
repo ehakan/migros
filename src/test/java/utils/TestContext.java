@@ -3,6 +3,7 @@ package utils;
 import configs.InternalProps;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class TestContext
 {
@@ -21,6 +22,7 @@ public class TestContext
 
         // initialize webdriver
         WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
 
         //Assign browser variable in Context
         this.browser = new Browser(this, driver);

@@ -1,10 +1,6 @@
 package tests.purchase;
 
-import org.junit.Assert;
 import org.junit.Test;
-import pages.common.CategoryPage;
-import pages.common.MainPage;
-import pages.purchase.BasketPage;
 import tests.AbstractTest;
 
 public class BasketTest extends AbstractTest
