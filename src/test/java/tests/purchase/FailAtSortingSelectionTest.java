@@ -9,7 +9,7 @@ import pages.common.MainPage;
 import pages.common.SubCategoryPage;
 import tests.AbstractTest;
 
-public class PurchaseSuccessPathTest extends AbstractTest {
+public class FailAtSortingSelectionTest extends AbstractTest {
 
     private final String CATEGORY_URL = "https://www.migros.com.tr/bebek-oyuncak-c-9";
     private final String SUB_CATEGORY_URL = "https://www.migros.com.tr/bebek-bezi-c-ab";
@@ -43,20 +43,10 @@ public class PurchaseSuccessPathTest extends AbstractTest {
     }
 
     @Test
-    public void stage_004_testRevealSortDropdown() {
+    public void stage_004_testFailAtSortingSelection() {
         SubCategoryPage subCategoryPage = new SubCategoryPage(browser);
         browser.waitAndClick(subCategoryPage.sortDropdown);
-        browser.waitAndClick(subCategoryPage.sortByHighestPrice);
-        Assertions.assertEquals(browser.getCurrentUrl(), SORTED_BY_HIGHEST_PRICE_URL);
+        browser.waitAndClick(subCategoryPage.sortByLowestPrice);
+        Assertions.assertNotEquals(browser.getCurrentUrl(), SORTED_BY_HIGHEST_PRICE_URL);
     }
-
-    @Test
-    public void stage_005_testAddToBasket() {
-        SubCategoryPage subCategoryPage = new SubCategoryPage(browser);
-        browser.waitAndClick(subCategoryPage.addBasket);
-
-        // Asserts login modal is displayed
-        Assertions.assertEquals(subCategoryPage.loginModal.getCssValue("display"), "block");
-    }
-
 }
