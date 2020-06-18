@@ -35,5 +35,4 @@ public class SubCategoryPage extends AbstractPage
 
     @FindBy(css = "#membership-modal")
     public WebElement loginModal;
-
 }
