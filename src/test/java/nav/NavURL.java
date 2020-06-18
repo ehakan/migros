@@ -1,4 +1,4 @@
-package pages;
+package nav;
 
 public class NavURL {
     public static final String CATEGORY_URL = "https://www.migros.com.tr/bebek-oyuncak-c-9";

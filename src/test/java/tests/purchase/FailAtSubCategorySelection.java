@@ -1,13 +1,14 @@
 package tests.purchase;
 
+import nav.component.CookiePopup;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
-import pages.NavURL;
-import pages.common.CategoryPage;
-import pages.common.MainPage;
-import pages.ui_components.Breadcrumb;
+import nav.NavURL;
+import nav.page.CategoryPage;
+import nav.page.MainPage;
+import nav.component.Breadcrumb;
 import tests.AbstractTest;
 
 import java.util.Arrays;
@@ -24,22 +25,23 @@ public class FailAtSubCategorySelection extends AbstractTest {
 
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak");
-        Assertions.assertEquals(breadcrumb.getBreadcrumb(), expectedBreadcrumb);
+        Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
     }
 
     @Test
     public void stage_002_testFailAtSubCategorySelection() {
-        CategoryPage categoryPage = new CategoryPage(browser);
         try {
-            browser.waitAndClick(categoryPage.cookieDismissButton);
+            CookiePopup cookiePopup = new CookiePopup(browser);
+            browser.waitAndClick(cookiePopup.dismissButton);
         } catch (NoSuchElementException | ElementNotInteractableException ignored) {
         }
+        CategoryPage categoryPage = new CategoryPage(browser);
         browser.waitAndClick(categoryPage.toySubCategory);
 
         Assertions.assertNotEquals(browser.getCurrentUrl(), NavURL.SUB_CATEGORY_URL);
 
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak", "Bebek Bezi");
-        Assertions.assertNotEquals(breadcrumb.getBreadcrumb(), expectedBreadcrumb);
+        Assertions.assertNotEquals(breadcrumb.getTextList(), expectedBreadcrumb);
     }
 }

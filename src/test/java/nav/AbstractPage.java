@@ -1,4 +1,4 @@
-package pages;
+package nav;
 
 import org.openqa.selenium.support.PageFactory;
 import utils.Browser;

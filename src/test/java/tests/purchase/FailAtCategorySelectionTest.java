@@ -2,9 +2,9 @@ package tests.purchase;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pages.NavURL;
-import pages.common.MainPage;
-import pages.ui_components.Breadcrumb;
+import nav.NavURL;
+import nav.page.MainPage;
+import nav.component.Breadcrumb;
 import tests.AbstractTest;
 
 import java.util.Arrays;
@@ -21,7 +21,7 @@ public class FailAtCategorySelectionTest extends AbstractTest {
 
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak");
-        Assertions.assertNotEquals(breadcrumb.getBreadcrumb(), expectedBreadcrumb);
+        Assertions.assertNotEquals(breadcrumb.getTextList(), expectedBreadcrumb);
     }
 
 }

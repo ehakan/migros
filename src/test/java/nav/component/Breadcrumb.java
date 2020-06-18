@@ -1,8 +1,8 @@
-package pages.ui_components;
+package nav.component;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.AbstractPage;
+import nav.AbstractPage;
 import utils.Browser;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class Breadcrumb extends AbstractPage {
     @FindBy(xpath = "//ul[@class='breadcrumb']/li")
     public List<WebElement> rawBreadcrumbList;
 
-    public List<String> getBreadcrumb() {
+    public List<String> getTextList() {
         List<String> extractedBreadcrumbElements = new ArrayList<>();
         for (WebElement liElement : rawBreadcrumbList) {
             extractedBreadcrumbElements.add(liElement.getText());

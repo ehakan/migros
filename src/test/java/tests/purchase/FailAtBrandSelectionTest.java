@@ -1,14 +1,15 @@
 package tests.purchase;
 
+import nav.component.CookiePopup;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
-import pages.NavURL;
-import pages.common.CategoryPage;
-import pages.common.MainPage;
-import pages.common.SubCategoryPage;
-import pages.ui_components.Breadcrumb;
+import nav.NavURL;
+import nav.page.CategoryPage;
+import nav.page.MainPage;
+import nav.page.SubCategoryPage;
+import nav.component.Breadcrumb;
 import tests.AbstractTest;
 
 import java.util.Arrays;
@@ -25,7 +26,7 @@ public class FailAtBrandSelectionTest extends AbstractTest {
 
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak");
-        Assertions.assertEquals(breadcrumb.getBreadcrumb(), expectedBreadcrumb);
+        Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
     }
 
     @Test
@@ -37,16 +38,17 @@ public class FailAtBrandSelectionTest extends AbstractTest {
 
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak", "Bebek Bezi");
-        Assertions.assertEquals(breadcrumb.getBreadcrumb(), expectedBreadcrumb);
+        Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
     }
 
     @Test
     public void stage_003_testFailAtBrandSelection() {
-        SubCategoryPage subCategoryPage = new SubCategoryPage(browser);
         try {
-            browser.waitAndClick(subCategoryPage.cookieDismissButton);
+            CookiePopup cookiePopup = new CookiePopup(browser);
+            browser.waitAndClick(cookiePopup.dismissButton);
         } catch (NoSuchElementException | ElementNotInteractableException ignored) {
         }
+        SubCategoryPage subCategoryPage = new SubCategoryPage(browser);
         browser.waitAndClick(subCategoryPage.diaperBrandHuggiesCheckbox);
 
         Assertions.assertNotEquals(browser.getCurrentUrl(), NavURL.BRAND_FILTERED_URL);
@@ -54,6 +56,6 @@ public class FailAtBrandSelectionTest extends AbstractTest {
         // Assert correct breadcrumb (must not have changed, sorting selection should not effect the breadcrumb)
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak", "Bebek Bezi");
-        Assertions.assertEquals(breadcrumb.getBreadcrumb(), expectedBreadcrumb);
+        Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
     }
 }

@@ -1,17 +1,18 @@
 package tests.purchase;
 
+import nav.component.CookiePopup;
+import nav.component.LoginModal;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
-import pages.NavURL;
-import pages.common.CategoryPage;
-import pages.common.MainPage;
-import pages.common.SubCategoryPage;
-import pages.ui_components.Breadcrumb;
+import nav.NavURL;
+import nav.page.CategoryPage;
+import nav.page.MainPage;
+import nav.page.SubCategoryPage;
+import nav.component.Breadcrumb;
 import tests.AbstractTest;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class PurchaseSuccessPathTest extends AbstractTest {
         // Assert correct breadcrumb
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak");
-        Assertions.assertEquals(breadcrumb.getBreadcrumb(), expectedBreadcrumb);
+        Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
     }
 
     @Test
@@ -42,16 +43,17 @@ public class PurchaseSuccessPathTest extends AbstractTest {
         // Assert correct breadcrumb
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak", "Bebek Bezi");
-        Assertions.assertEquals(breadcrumb.getBreadcrumb(), expectedBreadcrumb);
+        Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
     }
 
     @Test
     public void stage_003_testBrandSelection() {
-        SubCategoryPage subCategoryPage = new SubCategoryPage(browser);
         try {
-            browser.waitAndClick(subCategoryPage.cookieDismissButton);
+            CookiePopup cookiePopup = new CookiePopup(browser);
+            browser.waitAndClick(cookiePopup.dismissButton);
         } catch (NoSuchElementException | ElementNotInteractableException ignored) {
         }
+        SubCategoryPage subCategoryPage = new SubCategoryPage(browser);
         browser.waitAndClick(subCategoryPage.diaperBrandPrimaCheckbox);
 
         // Assert correct url
@@ -60,7 +62,7 @@ public class PurchaseSuccessPathTest extends AbstractTest {
         // Assert correct breadcrumb (should still be the same)
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak", "Bebek Bezi");
-        Assertions.assertEquals(breadcrumb.getBreadcrumb(), expectedBreadcrumb);
+        Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
     }
 
     @Test
@@ -77,7 +79,7 @@ public class PurchaseSuccessPathTest extends AbstractTest {
         // Assert correct breadcrumb (should still be the same)
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak", "Bebek Bezi");
-        Assertions.assertEquals(breadcrumb.getBreadcrumb(), expectedBreadcrumb);
+        Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
     }
 
     @Test
@@ -88,12 +90,13 @@ public class PurchaseSuccessPathTest extends AbstractTest {
         // Assert correct breadcrumb (should still be the same)
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak", "Bebek Bezi");
-        Assertions.assertEquals(breadcrumb.getBreadcrumb(), expectedBreadcrumb);
+        Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
 
         // Asserts login modal is displayed
         // We can't check the basket since we are not logged in,
         // login modal at least guarantees we clicked on an add to basket buttton
-        Assertions.assertEquals(subCategoryPage.loginModal.getCssValue("display"), "block");
+        LoginModal loginModal = new LoginModal(browser);
+        Assertions.assertTrue(loginModal.isDisplayed());
     }
 
 }

@@ -1,8 +1,8 @@
-package pages.common;
+package nav.page;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.AbstractPage;
+import nav.AbstractPage;
 import utils.Browser;
 
 public class SubCategoryPage extends AbstractPage
@@ -12,8 +12,6 @@ public class SubCategoryPage extends AbstractPage
         super(browser);
     }
 
-    @FindBy(className = "cookie-popup-dismiss")
-    public WebElement cookieDismissButton;
 
     @FindBy(css = ".sub-category-product-list .list:nth-of-type(1) .product-card-button")
     public WebElement addBasket;
@@ -32,7 +30,4 @@ public class SubCategoryPage extends AbstractPage
 
     @FindBy(xpath = "(//li[@data-sort-criteria = 'PRICE_ASC'])[2]/a")
     public WebElement sortByLowestPrice;
-
-    @FindBy(css = "#membership-modal")
-    public WebElement loginModal;
 }

@@ -1,8 +1,8 @@
-package pages.common;
+package nav.page;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.AbstractPage;
+import nav.AbstractPage;
 import utils.Browser;
 
 public class MainPage extends AbstractPage
