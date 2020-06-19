@@ -1,6 +1,7 @@
 package tests.purchase;
 
 import nav.component.CookiePopup;
+import nav.component.ProductCardsList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.ElementNotInteractableException;
@@ -57,5 +58,13 @@ public class FailAtBrandSelectionTest extends AbstractTest {
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak", "Bebek Bezi");
         Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
+
+        // Assert Prima brand is not in the products
+        ProductCardsList productCardsList = new ProductCardsList(browser);
+        Assertions.assertFalse(productCardsList.titlesContainKeyword("Prima"));
+        Assertions.assertFalse(productCardsList.titlesContainKeyword("Canbebe"));
+        Assertions.assertFalse(productCardsList.titlesContainKeyword("Molfix"));
+        Assertions.assertFalse(productCardsList.titlesContainKeyword("Minies"));
+        Assertions.assertTrue(productCardsList.titlesContainKeyword("Huggies"));
     }
 }
