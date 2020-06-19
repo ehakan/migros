@@ -22,6 +22,12 @@ public class SubCategoryPage extends AbstractPage
     @FindBy(xpath = "(//a[@class='brands-list-anchor']//span[contains(text(), 'Huggies')])[1]/../..")
     public WebElement diaperBrandHuggiesCheckbox;
 
+    @FindBy(xpath = "(//a[@class='brands-list-anchor' and @data-monitor-ga-label='4 Beden'])[1]")
+    public WebElement diaperSize4Checkbox;
+
+    @FindBy(xpath = "(//a[@class='brands-list-anchor' and @data-monitor-ga-label='3 Beden'])[1]")
+    public WebElement diaperSize3Checkbox;
+
     @FindBy(css = ".others-button")
     public WebElement sortDropdown;
 

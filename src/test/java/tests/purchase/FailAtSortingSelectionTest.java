@@ -70,7 +70,26 @@ public class FailAtSortingSelectionTest extends AbstractTest {
     }
 
     @Test
-    public void stage_004_testFailAtSortingSelection() {
+    public void stage_004_testSizeSelections() {
+        try {
+            CookiePopup cookiePopup = new CookiePopup(browser);
+            browser.waitAndClick(cookiePopup.dismissButton);
+        } catch (NoSuchElementException | ElementNotInteractableException ignored) {
+        }
+
+        SubCategoryPage subCategoryPage = new SubCategoryPage(browser);
+        browser.waitAndClick(subCategoryPage.diaperSize4Checkbox);
+
+        Assertions.assertEquals(browser.getCurrentUrl(), NavURL.BRAND_AND_SIZE_FILTERED_URL);
+
+        // Assert correct breadcrumb (must not have changed, sorting selection should not effect the breadcrumb)
+        Breadcrumb breadcrumb = new Breadcrumb(browser);
+        List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak", "Bebek Bezi");
+        Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
+    }
+
+    @Test
+    public void stage_005_testFailAtSortingSelection() {
         SubCategoryPage subCategoryPage = new SubCategoryPage(browser);
         browser.waitAndClick(subCategoryPage.sortDropdown);
         browser.waitAndClick(subCategoryPage.sortByLowestPrice);
