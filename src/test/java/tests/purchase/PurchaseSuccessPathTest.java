@@ -104,11 +104,10 @@ public class PurchaseSuccessPathTest extends AbstractTest {
 
     @Test
     public void stage_005_testSortingSelection() {
-        SubCategoryPage subCategoryPage = new SubCategoryPage(browser);
+        SortBar sortBar = new SortBar(browser);
         // guarantees not being able to find the button, responsive layouts of the site acts weird
-        browser.waitAndClick(subCategoryPage.sortDropdown);
-
-        browser.waitAndClick(subCategoryPage.sortByHighestPrice);
+        browser.waitAndClick(sortBar.sortDropdownButton);
+        browser.waitAndClick(sortBar.sortByHighestPrice);
 
         // Assert correct url
         Assertions.assertEquals(browser.getCurrentUrl(), NavURL.SORTED_BY_HIGHEST_PRICE_URL);
@@ -120,6 +119,17 @@ public class PurchaseSuccessPathTest extends AbstractTest {
 
         SidebarTitle sidebarTitle = new SidebarTitle(browser);
         Assertions.assertEquals(sidebarTitle.getTitle(), "Prima Bebek Bezi");
+
+        //Assert button is highlighted
+        browser.waitAndClick(sortBar.sortDropdownButton);
+        // refresh for new state
+        sortBar = new SortBar(browser);
+        Assertions.assertTrue(sortBar.isSelected(sortBar.sortByHighestPrice));
+        Assertions.assertFalse(sortBar.isSelected(sortBar.sortByLowestPrice));
+        Assertions.assertFalse(sortBar.isSelected(sortBar.sortByDiscountAmount));
+        Assertions.assertFalse(sortBar.isSelected(sortBar.sortByDiscountPercentage));
+        Assertions.assertFalse(sortBar.isSelected(sortBar.sortByWeeklyBestSeller));
+        Assertions.assertFalse(sortBar.isSelected(sortBar.sortByLastOrders));
 
         ProductCardsList productCardsList = new ProductCardsList(browser);
         System.out.println(productCardsList.getPrices());

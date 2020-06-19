@@ -1,8 +1,6 @@
 package tests.purchase;
 
-import nav.component.CookiePopup;
-import nav.component.ProductCardsList;
-import nav.component.SidebarTitle;
+import nav.component.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.ElementNotInteractableException;
@@ -11,7 +9,6 @@ import nav.NavURL;
 import nav.page.CategoryPage;
 import nav.page.MainPage;
 import nav.page.SubCategoryPage;
-import nav.component.Breadcrumb;
 import tests.AbstractTest;
 
 import java.util.Arrays;
@@ -104,9 +101,10 @@ public class FailAtSortingSelectionTest extends AbstractTest {
 
     @Test
     public void stage_005_testFailAtSortingSelection() {
-        SubCategoryPage subCategoryPage = new SubCategoryPage(browser);
-        browser.waitAndClick(subCategoryPage.sortDropdown);
-        browser.waitAndClick(subCategoryPage.sortByLowestPrice);
+        SortBar sortBar = new SortBar(browser);
+        browser.waitAndClick(sortBar.sortDropdownButton);
+        // lowest price instead of highest
+        browser.waitAndClick(sortBar.sortByLowestPrice);
 
         Assertions.assertNotEquals(browser.getCurrentUrl(), NavURL.SORTED_BY_HIGHEST_PRICE_URL);
 
@@ -117,6 +115,12 @@ public class FailAtSortingSelectionTest extends AbstractTest {
 
         SidebarTitle sidebarTitle = new SidebarTitle(browser);
         Assertions.assertEquals(sidebarTitle.getTitle(), "Prima Bebek Bezi");
+
+        //Assert button is highlighted
+        browser.waitAndClick(sortBar.sortDropdownButton);
+        // refresh for new state
+        sortBar = new SortBar(browser);
+        Assertions.assertFalse(sortBar.isSelected(sortBar.sortByHighestPrice));
 
         ProductCardsList productCardsList = new ProductCardsList(browser);
         System.out.println(productCardsList.getPrices());

@@ -12,7 +12,6 @@ public class SubCategoryPage extends AbstractPage
         super(browser);
     }
 
-
     @FindBy(css = ".sub-category-product-list .list:nth-of-type(1) .product-card-button")
     public WebElement addBasket;
 
@@ -27,13 +26,4 @@ public class SubCategoryPage extends AbstractPage
 
     @FindBy(xpath = "(//a[@class='brands-list-anchor' and @data-monitor-ga-label='3 Beden'])[1]")
     public WebElement diaperSize3Checkbox;
-
-    @FindBy(css = ".others-button")
-    public WebElement sortDropdown;
-
-    @FindBy(xpath = "(//li[@data-sort-criteria = 'PRICE_DESC'])[2]/a")
-    public WebElement sortByHighestPrice;
-
-    @FindBy(xpath = "(//li[@data-sort-criteria = 'PRICE_ASC'])[2]/a")
-    public WebElement sortByLowestPrice;
 }
