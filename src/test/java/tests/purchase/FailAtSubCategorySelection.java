@@ -1,6 +1,7 @@
 package tests.purchase;
 
 import nav.component.CookiePopup;
+import nav.component.SidebarTitle;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.ElementNotInteractableException;
@@ -26,6 +27,9 @@ public class FailAtSubCategorySelection extends AbstractTest {
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak");
         Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
+
+        SidebarTitle sidebarTitle = new SidebarTitle(browser);
+        Assertions.assertEquals(sidebarTitle.getTitle(), "Bebek, Oyuncak");
     }
 
     @Test
@@ -43,5 +47,8 @@ public class FailAtSubCategorySelection extends AbstractTest {
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak", "Bebek Bezi");
         Assertions.assertNotEquals(breadcrumb.getTextList(), expectedBreadcrumb);
+
+        SidebarTitle sidebarTitle = new SidebarTitle(browser);
+        Assertions.assertNotEquals(sidebarTitle.getTitle(), "Bebek Bezi");
     }
 }

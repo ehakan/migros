@@ -2,6 +2,7 @@ package tests.purchase;
 
 import nav.component.CookiePopup;
 import nav.component.ProductCardsList;
+import nav.component.SidebarTitle;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.ElementNotInteractableException;
@@ -28,6 +29,9 @@ public class FailAtBrandSelectionTest extends AbstractTest {
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak");
         Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
+
+        SidebarTitle sidebarTitle = new SidebarTitle(browser);
+        Assertions.assertEquals(sidebarTitle.getTitle(), "Bebek, Oyuncak");
     }
 
     @Test
@@ -40,6 +44,9 @@ public class FailAtBrandSelectionTest extends AbstractTest {
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak", "Bebek Bezi");
         Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
+
+        SidebarTitle sidebarTitle = new SidebarTitle(browser);
+        Assertions.assertEquals(sidebarTitle.getTitle(), "Bebek Bezi");
     }
 
     @Test
@@ -58,6 +65,9 @@ public class FailAtBrandSelectionTest extends AbstractTest {
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak", "Bebek Bezi");
         Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
+
+        SidebarTitle sidebarTitle = new SidebarTitle(browser);
+        Assertions.assertNotEquals(sidebarTitle.getTitle(), "Prima Bebek Bezi");
 
         // Assert Prima brand is not in the products
         ProductCardsList productCardsList = new ProductCardsList(browser);

@@ -1,5 +1,6 @@
 package tests.purchase;
 
+import nav.component.SidebarTitle;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import nav.NavURL;
@@ -22,6 +23,9 @@ public class FailAtCategorySelectionTest extends AbstractTest {
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak");
         Assertions.assertNotEquals(breadcrumb.getTextList(), expectedBreadcrumb);
+
+        SidebarTitle sidebarTitle = new SidebarTitle(browser);
+        Assertions.assertNotEquals(sidebarTitle.getTitle(), "Bebek, Oyuncak");
     }
 
 }

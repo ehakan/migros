@@ -2,6 +2,7 @@ package tests.purchase;
 
 import nav.component.CookiePopup;
 import nav.component.ProductCardsList;
+import nav.component.SidebarTitle;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.ElementNotInteractableException;
@@ -28,6 +29,9 @@ public class FailAtSortingSelectionTest extends AbstractTest {
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak");
         Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
+
+        SidebarTitle sidebarTitle = new SidebarTitle(browser);
+        Assertions.assertEquals(sidebarTitle.getTitle(), "Bebek, Oyuncak");
     }
 
     @Test
@@ -41,6 +45,9 @@ public class FailAtSortingSelectionTest extends AbstractTest {
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak", "Bebek Bezi");
         Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
+
+        SidebarTitle sidebarTitle = new SidebarTitle(browser);
+        Assertions.assertEquals(sidebarTitle.getTitle(), "Bebek Bezi");
     }
 
     @Test
@@ -59,6 +66,9 @@ public class FailAtSortingSelectionTest extends AbstractTest {
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak", "Bebek Bezi");
         Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
+
+        SidebarTitle sidebarTitle = new SidebarTitle(browser);
+        Assertions.assertEquals(sidebarTitle.getTitle(), "Prima Bebek Bezi");
 
         // Assert brand is correct
         ProductCardsList productCardsList = new ProductCardsList(browser);
@@ -86,6 +96,10 @@ public class FailAtSortingSelectionTest extends AbstractTest {
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak", "Bebek Bezi");
         Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
+
+        // Size should not affect sidebar
+        SidebarTitle sidebarTitle = new SidebarTitle(browser);
+        Assertions.assertEquals(sidebarTitle.getTitle(), "Prima Bebek Bezi");
     }
 
     @Test
@@ -100,6 +114,9 @@ public class FailAtSortingSelectionTest extends AbstractTest {
         Breadcrumb breadcrumb = new Breadcrumb(browser);
         List<String> expectedBreadcrumb = Arrays.asList("Anasayfa", "Bebek, Oyuncak", "Bebek Bezi");
         Assertions.assertEquals(breadcrumb.getTextList(), expectedBreadcrumb);
+
+        SidebarTitle sidebarTitle = new SidebarTitle(browser);
+        Assertions.assertEquals(sidebarTitle.getTitle(), "Prima Bebek Bezi");
 
         ProductCardsList productCardsList = new ProductCardsList(browser);
         System.out.println(productCardsList.getPrices());
