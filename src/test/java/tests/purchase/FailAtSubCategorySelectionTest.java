@@ -15,7 +15,7 @@ import tests.AbstractTest;
 import java.util.Arrays;
 import java.util.List;
 
-public class FailAtSubCategorySelection extends AbstractTest {
+public class FailAtSubCategorySelectionTest extends AbstractTest {
 
     @Test
     public void stage_001_testCategorySelection() {
